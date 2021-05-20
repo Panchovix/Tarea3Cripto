@@ -1,3 +1,4 @@
+/* Leer desde la línea 946, ya que el resto es parte de la librería de blowfish en js (y está en ruso) */
 // ==UserScript==
 // @name         Script
 // @namespace    http://tampermonkey.net/
@@ -942,22 +943,33 @@ Blowfish.sBox3 = [
     0xb74e6132, 0xce77e25b, 0x578fdfe3, 0x3ac372e6
 ];
 
-var msg = document.getElementById('msg_cifrado').innerHTML;
+var msg = document.getElementById('msg_cifrado').innerHTML; 
+// se obtiene el mensaje del documento por id, definido por el código de python
 var msg_aux = "";
 
 for (var y = 2; y < (msg.length-1) ; y++) {
     msg_aux = msg_aux + msg.charAt(y);
 }
+// se hace un ciclo según el largo del mensaje y luego se guarda en una variable auxiliar, que luego se utilizará para descifrar
 
-console.log(msg_aux);
+console.log(msg_aux); 
+// imprime en consola el mensaje auxiliar
 
-var bf = new Blowfish("Esta llave es mas larga que mi carrera", "cbc");
+var bf = new Blowfish("Llave secreta", "cbc"); 
+// se define la variable bf que usa Blowfish, con una llave secreta y usando el modo CBC
 var encrypted = bf.base64Decode(msg_aux);
+// se decodifica el base64 del mensaje recibido, antes de pasarlo por blowfish, y guardandolo en la variable encrypted
 var decrypted = bf.decrypt(encrypted, "12345678");
+// se descenripta el mensaje con la función decrypt en la variable encrypted, para guardarlo en una variable decrypted
 console.log(decrypted);
-
+// imprime el mensaje descencriptado (en consola)
 var newDiv = document.createElement("div");
+// crea un nuevo elemento desde el js en la página wib
 var newContent = document.createTextNode(decrypted);
-newDiv.appendChild(newContent); //añade texto al div creado.
+// crea el mensaje desencriptado
+
+newDiv.appendChild(newContent); 
+// añade texto al div creado.
 
 document.getElementById('msg_cifrado').appendChild(newDiv);
+// pone bajo del mensaje encriptado el mensaje descenriptado, si es que tampermonkey está activo
