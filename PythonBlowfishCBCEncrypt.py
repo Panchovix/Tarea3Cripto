@@ -11,14 +11,10 @@ mensaje = mensaje.encode() #encode al mensaje
 llave = input("Inserte llave para cifrar el mensaje, entre 4 y 56 caracteres\n")
 llave = llave.encode() #encode a la llave
 cipher = blowfish.Cipher(llave)
-#cipher = blowfish.Cipher(b"llave secreta")
-#mensaje = b"HolaComoEstas"
-#stringa = stringa.decode().encode("utf-8",errors="ignore")
 data = mensaje # data a encriptar
 vectorr = input ("Inserte un vector de largo 8 caracteres, numerico\n")
 vectorr = vectorr.encode() #encode al vector
 iv = vectorr # vector de inicialización, necesario para usar CBC en Blowfish
-#iv = b"12345678" # initialization vector
 
 data_encrypted = b"".join(cipher.encrypt_cbc(data, iv)) #con la librería Blowfish, se crea la función para encriptar
 data_decrypted = b"".join(cipher.decrypt_cbc(data_encrypted, iv)) #al igual que arriba, pero para descencriptar
