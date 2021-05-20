@@ -34,7 +34,7 @@ f = open('Mensaje.html', 'w') #se abre una página web con nombre mensaje
 mensaje = """<p> Este sitio contiene un mensaje secreto</p>
 <div class ="algorithm" id="msg_cifrado">""" + str(b) + """</div>
 """
-#se imprime el mensaje en la página, encriptado en base64
+#se imprime el mensaje en la página, encriptado en base64 y se le asigna la id de msg_cifrado
 
 f.write(mensaje) #escribe el mensaje
 f.close() #termina el proceso de escribir
