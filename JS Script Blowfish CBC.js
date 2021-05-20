@@ -955,11 +955,11 @@ for (var y = 2; y < (msg.length-1) ; y++) {
 console.log(msg_aux); 
 // imprime en consola el mensaje auxiliar
 
-var bf = new Blowfish("Llave secreta", "cbc"); 
+var bf = new Blowfish("cripto", "cbc"); 
 // se define la variable bf que usa Blowfish, con una llave secreta y usando el modo CBC
 var encrypted = bf.base64Decode(msg_aux);
 // se decodifica el base64 del mensaje recibido, antes de pasarlo por blowfish, y guardandolo en la variable encrypted
-var decrypted = bf.decrypt(encrypted, "12345678");
+var decrypted = bf.decrypt(encrypted, "11223344");
 // se descenripta el mensaje con la función decrypt en la variable encrypted, para guardarlo en una variable decrypted
 console.log(decrypted);
 // imprime el mensaje descencriptado (en consola)
